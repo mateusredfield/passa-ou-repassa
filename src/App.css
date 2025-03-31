@@ -59,3 +59,41 @@
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
+
+/* Add these styles for the background image on body with blur and dark overlay */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('./assets/images/quiz-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+  backdrop-filter: blur(5px); /* Add blur effect */
+  -webkit-backdrop-filter: blur(5px); /* For Safari support */
+  z-index: -1;
+}
+
+/* Keep your existing home-container styles */
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Remove the overlay div from home-container since we're using body::before */

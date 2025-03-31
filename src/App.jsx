@@ -1,6 +1,8 @@
+// Fix the imports - remove duplicates
 import { useState } from 'react';
 import './App.css';
 import { mockQuestions } from './questions';
+import quizBackground from './assets/images/quiz-background.png';
 
 // Componente temporário para Home
 const Home = ({ onStartGame }) => (
@@ -17,7 +19,7 @@ const Home = ({ onStartGame }) => (
   </div>
 );
 
-// Update the Game component with multiple choice options
+// Game component remains the same
 const Game = ({ questions: allQuestions, onFinish }) => {
   const [questions] = useState(() => {
     // Randomly shuffle questions at the start
@@ -199,8 +201,9 @@ const Results = ({ scores, onRestart }) => {
   );
 };
 
+// Keep only one App function - fix the background implementation
 function App() {
-  const [gameState, setGameState] = useState('home'); // 'home', 'game', 'results'
+  const [gameState, setGameState] = useState('home');
   const [finalScores, setFinalScores] = useState({ team1: 0, team2: 0 });
   
   const startGame = () => {
@@ -217,11 +220,53 @@ function App() {
   };
   
   return (
-    <div className="app">
-      {gameState === 'home' && <Home onStartGame={startGame} />}
-      {gameState === 'game' && <Game questions={mockQuestions} onFinish={finishGame} />}
-      {gameState === 'results' && <Results scores={finalScores} onRestart={restartGame} />}
-    </div>
+    <>
+      {/* Imagem de fundo com blur - seguindo o exemplo fornecido */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        display: 'block',
+        backgroundImage: `url(${quizBackground})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        width: '100%',
+        height: '100%',
+        WebkitFilter: 'blur(3px)',
+        MozFilter: 'blur(3px)',
+        OFilter: 'blur(3px)',
+        msFilter: 'blur(3px)',
+        filter: 'blur(3px)'
+      }}></div>
+      
+      {/* Overlay escuro */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 2,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
+      }}></div>
+      
+      {/* Conteúdo principal com z-index maior */}
+      <div style={{
+        position: 'relative',
+        zIndex: 9999,
+        width: '100%',
+        height: '100%'
+      }} className="app">
+        {gameState === 'home' && <Home onStartGame={startGame} />}
+        {gameState === 'game' && <Game questions={mockQuestions} onFinish={finishGame} />}
+        {gameState === 'results' && <Results scores={finalScores} onRestart={restartGame} />}
+      </div>
+    </>
   );
 }
 
