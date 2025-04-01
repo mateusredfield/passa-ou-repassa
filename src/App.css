@@ -1,5 +1,23 @@
+:root{
+
+  --azul1: #0f5bad;
+  --azulBotaoInicial: var(--azul1);
+}
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  height: 100vh;
+}
+
 #root {
   max-width: 1280px;
+  height: 100%;
+  max-height: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -87,13 +105,70 @@ body::before {
   z-index: -1;
 }
 
+.componentHome{
+  height: 100%;
+  width: 100%;
+  background-color: orange;
+}
+
 /* Keep your existing home-container styles */
 .home-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  align-items: start;
   position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.home-content{
+  width: 100%;
+  height: 100%;
+  border: 2px solid black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.home-content .title{
+  font-size: 5rem;
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+.home-content .description{
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.home-content .start-button{
+  font-size: 1.5rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--azulBotaoInicial);
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 50rem;
+  height: 7.5rem;
+  transition: background-color 0.3s ease;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Remove the overlay div from home-container since we're using body::before */
+@keyframes backgroundPan {
+  0% {
+    background-position: 45% 50%;
+  }
+  50% {
+    background-position: 55% 50%;
+  }
+  100% {
+    background-position: 45% 50%;
+  }
+}

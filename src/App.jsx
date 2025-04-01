@@ -13,8 +13,7 @@ const Home = ({ onStartGame }) => (
         Teste seus conhecimentos neste jogo de perguntas e respostas!
       </p>
       <button onClick={onStartGame} className="start-button">
-        Iniciar Jogo
-      </button>
+        INICIAR JOGO</button>
     </div>
   </div>
 );
@@ -231,7 +230,7 @@ function App() {
         zIndex: 1,
         display: 'block',
         backgroundImage: `url(${quizBackground})`,
-        backgroundSize: 'cover',
+        backgroundSize: '120% 120%', // Aumentado para ter espaço para movimento
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
@@ -241,7 +240,8 @@ function App() {
         MozFilter: 'blur(3px)',
         OFilter: 'blur(3px)',
         msFilter: 'blur(3px)',
-        filter: 'blur(3px)'
+        filter: 'blur(3px)',
+        animation: 'backgroundPan 8s linear infinite'
       }}></div>
       
       {/* Overlay escuro */}
@@ -262,7 +262,7 @@ function App() {
         width: '100%',
         height: '100%'
       }} className="app">
-        {gameState === 'home' && <Home onStartGame={startGame} />}
+        {gameState === 'home' && <Home onStartGame={startGame} className="componentHome"/>}
         {gameState === 'game' && <Game questions={mockQuestions} onFinish={finishGame} />}
         {gameState === 'results' && <Results scores={finalScores} onRestart={restartGame} />}
       </div>
