@@ -99,28 +99,17 @@ const Game = ({ questions: allQuestions, onFinish }) => {
     <div className="game-container">
       <h1 className="game-title">Passa ou Repassa</h1>
       
-      <div className="scoreboard">
-        <div className={`team ${currentTeam === 'team1' ? 'active' : ''}`}>
-          <h3>Time 1</h3>
-          <div className="score">{scores.team1}</div>
-        </div>
-        <div className={`team ${currentTeam === 'team2' ? 'active' : ''}`}>
-          <h3>Time 2</h3>
-          <div className="score">{scores.team2}</div>
-        </div>
-      </div>
-      
       <div className="question-progress">
         Pergunta {currentQuestionIndex + 1} de {questions.length}
       </div>
       
       <div className="questions-per-team">
-        <div>Time 1: {questionsPerTeam.team1}/10 perguntas</div>
-        <div>Time 2: {questionsPerTeam.team2}/10 perguntas</div>
+        <div><span>TIME 1</span><span>{questionsPerTeam.team1} / 10</span></div>
+        <div><span>TIME 2</span><span>{questionsPerTeam.team2} / 10</span></div>
       </div>
       
       <div className="question-card">
-        <h2>{currentQuestion.question}</h2>
+        <h2 className='question-card-text'>{currentQuestion.question}</h2>
         <div className="options-container">
           {currentQuestion.options.map((option) => (
             <button
@@ -158,6 +147,16 @@ const Game = ({ questions: allQuestions, onFinish }) => {
               Próxima Pergunta
             </button>
           )}
+        </div>
+      </div>
+      <div className="scoreboard">
+        <div className={`team ${currentTeam === 'team1' ? 'active' : ''}`}>
+          <h3>TIME 1</h3>
+          <div className="score">{scores.team1}</div>
+        </div>
+        <div className={`team ${currentTeam === 'team2' ? 'active' : ''}`}>
+          <h3>TIME 2</h3>
+          <div className="score">{scores.team2}</div>
         </div>
       </div>
     </div>
@@ -263,7 +262,7 @@ function App() {
         height: '100%'
       }} className="app">
         {gameState === 'home' && <Home onStartGame={startGame} className="componentHome"/>}
-        {gameState === 'game' && <Game questions={mockQuestions} onFinish={finishGame} />}
+        {gameState === 'game' && <Game questions={mockQuestions} onFinish={finishGame} className="componentGame"/>}
         {gameState === 'results' && <Results scores={finalScores} onRestart={restartGame} />}
       </div>
     </>

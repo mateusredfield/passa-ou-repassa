@@ -1,7 +1,13 @@
 :root{
 
+  --branco1: #fff;
   --azul1: #0f5bad;
   --azulBotaoInicial: var(--azul1);
+  --corTitulo: var(--branco1);
+  font-family: Arial, Helvetica, sans-serif;
+  --verde1: rgba(0, 255, 40, 0.4);
+  --cinzaTransparente1: rgba(128, 128, 128, 0.199);
+  --cinzaTransparente2: rgba(128, 128, 128, 0.6);
 }
 
 *{
@@ -19,7 +25,7 @@ body{
   height: 100%;
   max-height: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem;
   text-align: center;
 }
 
@@ -60,7 +66,7 @@ body{
 }
 
 
-.questions-per-team {
+/* .questions-per-team {
   display: flex;
   justify-content: space-around;
   margin: 10px 0;
@@ -76,7 +82,7 @@ body{
   border-radius: 4px;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
+} */
 
 
 /* Add these styles for the background image on body with blur and dark overlay */
@@ -158,6 +164,91 @@ body::before {
   transition: background-color 0.3s ease;
   font-size: 2rem;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.game-container{
+  height: 100%;
+  border-radius: 5px;
+}
+
+.game-container .question-progress{
+  width: 100%;
+  color: var(--branco1);
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.game-container .questions-per-team{
+  width: 75%;
+  margin: auto;
+  margin-top: 0.75rem;
+  color: var(--branco1);
+  font-size: 1.75rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--branco1);
+}
+
+.game-container .questions-per-team div:first-child{
+  margin-right: 2.5rem;
+}
+
+.game-container .questions-per-team div{
+  display: flex;
+  flex-direction: column;
+}
+
+.game-container .game-title{
+  font-size: 4rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--corTitulo);
+}
+
+.game-container .question-card .question-card-text{
+  color: white;
+  font-size: clamp(1rem, 4.5vw, 25rem);
+  height: 100%;
+  min-height: 10rem;
+  width: 100%;
+  margin: auto;
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.game-container .scoreboard{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.199);
+  position: absolute;
+  bottom: 0px;
+}
+
+.game-container .scoreboard .score{
+  margin-top: 0.5rem;
+  font-size: 5rem;
+}
+
+.game-container .scoreboard .team:first-child{
+  margin-right: 5rem;
+}
+
+.game-container .scoreboard h3{
+  color: white;
+  font-size: 2.5rem;
+
+}
+
+.game-container .scoreboard .score{
+  color: white;
 }
 
 /* Remove the overlay div from home-container since we're using body::before */
