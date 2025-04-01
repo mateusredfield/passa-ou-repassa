@@ -21,7 +21,6 @@ body{
 }
 
 #root {
-  max-width: 1280px;
   height: 100%;
   max-height: 100%;
   margin: 0 auto;
@@ -171,84 +170,156 @@ body::before {
   border-radius: 5px;
 }
 
-.game-container .question-progress{
+.game-container .divisaoTopo{
+  height: 25%;
+  max-height: 30%;
   width: 100%;
-  color: var(--branco1);
-  font-size: 1.25rem;
-  margin-top: 0.25rem;
-}
-
-.game-container .questions-per-team{
-  width: 75%;
-  margin: auto;
-  margin-top: 0.75rem;
-  color: var(--branco1);
-  font-size: 1.75rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--branco1);
+  flex-wrap: wrap;
 }
 
-.game-container .questions-per-team div:first-child{
-  margin-right: 2.5rem;
+.game-container .divisaoTopo > :first-child{
+  width: 100%;
+  height: 25%;
 }
 
-.game-container .questions-per-team div{
+.game-container .divisaoTopo > :nth-child(2){
+  width: 50%;
+  height: 50%;
+}
+
+.game-container .divisaoTopo > :nth-child(3){
+  width: 50%;
+  height: 50%;
+}
+
+.game-container .divisaoTopo .subDivisao{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.game-container .scoreboard{
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  padding-left: 2.5%;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.199);
+}
+
+.game-container .scoreboard .score{
+  font-size: clamp(1rem, 3vw, 5rem);
+}
+
+.game-container .scoreboard .team:first-child{
+  margin-right: 3rem;
+}
+
+.game-container .scoreboard h3{
+  color: white;
+  font-size: clamp(1rem, 3.5vw, 4rem);
+}
+
+.game-container .scoreboard .score{
+  color: white;
+}
+
+.game-container .question-progress{
+  width: 100%;
+  height: 100%;
+  color: var(--branco1);
   display: flex;
   flex-direction: column;
+  justify-content: end;
+  font-size: clamp(1rem, 3vw, 4rem);
+}
+
+.game-container .questions-per-team{
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  color: var(--branco1);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 .game-container .game-title{
-  font-size: 4rem;
+  font-size: clamp(1rem, 4vw, 25rem);
   font-family: Arial, Helvetica, sans-serif;
   color: var(--corTitulo);
+}
+
+.game-container .question-card{
+  height: 70%;
+  min-height: 60%;
+  width: 100%;
+  min-width: 100%;
+  background-color: black;
+  background-color: rgb(16 5 5 / 79%);
+  backdrop-filter: blur(5px);
 }
 
 .game-container .question-card .question-card-text{
   color: white;
   font-size: clamp(1rem, 4.5vw, 25rem);
-  height: 100%;
-  min-height: 10rem;
+  height: auto;
+  height: 50%;
   width: 100%;
+  min-width: 100%;
   margin: auto;
-  margin-top: 0.75rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
 }
 
-.game-container .scoreboard{
-  width: 100%;
-  height: auto;
+.game-container .question-card .options-container{
+  height: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}  
+
+.game-container .question-card .option-button{
+  width: 40%;
+  height: 40%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: rgba(128, 128, 128, 0.199);
-  position: absolute;
-  bottom: 0px;
+  background-color: var(--branco1);
+  font-size: clamp(1rem, 2.5vw, 10rem);
+  margin: auto;  
+  border-radius: 5px ;
 }
 
-.game-container .scoreboard .score{
-  margin-top: 0.5rem;
-  font-size: 5rem;
+
+.game-container .question-card .actions{
+  height: 15%;
+  width: 40%;
+  margin: auto auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.game-container .scoreboard .team:first-child{
-  margin-right: 5rem;
+.game-container .question-card .actions button{
+  width: 50%;
+  height: 75%;
+  border-radius: 5px;
 }
 
-.game-container .scoreboard h3{
-  color: white;
-  font-size: 2.5rem;
-
-}
-
-.game-container .scoreboard .score{
-  color: white;
+.game-container .question-card .actions button{
+  font-size: clamp(1rem, 2.25vw, 10rem);
 }
 
 /* Remove the overlay div from home-container since we're using body::before */

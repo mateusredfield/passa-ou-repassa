@@ -97,15 +97,31 @@ const Game = ({ questions: allQuestions, onFinish }) => {
   
   return (
     <div className="game-container">
-      <h1 className="game-title">Passa ou Repassa</h1>
       
-      <div className="question-progress">
-        Pergunta {currentQuestionIndex + 1} de {questions.length}
-      </div>
-      
-      <div className="questions-per-team">
-        <div><span>TIME 1</span><span>{questionsPerTeam.team1} / 10</span></div>
-        <div><span>TIME 2</span><span>{questionsPerTeam.team2} / 10</span></div>
+      <div className='divisaoTopo'>
+        
+        <h1 className="game-title">Passa ou Repassa</h1>
+        
+        <div className="scoreboard">
+          <div className={`team ${currentTeam === 'team1' ? 'active' : ''}`}>
+            <h3>TIME 1</h3>
+            <div className="score">{scores.team1}</div>
+          </div>
+          <div className={`team ${currentTeam === 'team2' ? 'active' : ''}`}>
+            <h3>TIME 2</h3>
+            <div className="score">{scores.team2}</div>
+          </div>
+        </div>
+
+        <div className='subDivisao'>
+          <div className="question-progress">
+            Pergunta {currentQuestionIndex + 1} / {questions.length}
+          </div>
+          <div className="questions-per-team">
+            <div><span>TIME 1: </span><span className='qualTeam'>{questionsPerTeam.team1} / 10</span></div>
+            <div><span>TIME 2: </span><span className='qualTeam'>{questionsPerTeam.team2} / 10</span></div>
+          </div>
+        </div>
       </div>
       
       <div className="question-card">
@@ -132,7 +148,7 @@ const Game = ({ questions: allQuestions, onFinish }) => {
                 className="btn confirm"
                 disabled={!selectedOption}
               >
-                Confirmar Resposta
+                Confirmar
               </button>
               <button 
                 onClick={handlePass}
@@ -147,16 +163,6 @@ const Game = ({ questions: allQuestions, onFinish }) => {
               Próxima Pergunta
             </button>
           )}
-        </div>
-      </div>
-      <div className="scoreboard">
-        <div className={`team ${currentTeam === 'team1' ? 'active' : ''}`}>
-          <h3>TIME 1</h3>
-          <div className="score">{scores.team1}</div>
-        </div>
-        <div className={`team ${currentTeam === 'team2' ? 'active' : ''}`}>
-          <h3>TIME 2</h3>
-          <div className="score">{scores.team2}</div>
         </div>
       </div>
     </div>
