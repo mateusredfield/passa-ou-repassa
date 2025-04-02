@@ -74,7 +74,13 @@ const Game = ({ questions: allQuestions, onFinish }) => {
   
   const handleOptionSelect = (option) => {
     if (!showResult) {
-      setSelectedOption(option);
+      // If clicking the same option, deselect it
+      if (selectedOption === option) {
+        setSelectedOption(null);
+      } else {
+        // Otherwise, select the new option
+        setSelectedOption(option);
+      }
     }
   };
 
@@ -114,7 +120,7 @@ const Game = ({ questions: allQuestions, onFinish }) => {
         </div>
 
         <div className='subDivisao'>
-          <div className="question-progress">
+          <div className="question-progress" style={{visibility: "hidden"}}>
             Pergunta {currentQuestionIndex + 1} / {questions.length}
           </div>
           <div className="questions-per-team">

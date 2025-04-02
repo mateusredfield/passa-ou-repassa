@@ -2,6 +2,7 @@
 
   --branco1: #fff;
   --azul1: #0f5bad;
+  --azul2: #51b9ffd7;
   --azulBotaoInicial: var(--azul1);
   --corTitulo: var(--branco1);
   font-family: Arial, Helvetica, sans-serif;
@@ -249,7 +250,7 @@ body::before {
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 2.5vw, 10rem);
 }
 
 .game-container .game-title{
@@ -333,4 +334,15 @@ body::before {
   100% {
     background-position: 45% 50%;
   }
+}
+
+.option-button {
+  transition: all 0.3s ease;
+}
+
+.game-container .question-card .option-button.selected {
+  background-color: var(--azul2); /* Forçando a sobreposição */
+  color: var(--branco1);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(15, 91, 173, 0.5);
 }
