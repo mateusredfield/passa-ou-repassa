@@ -9,6 +9,8 @@
   --verde1: rgba(0, 255, 40, 0.4);
   --cinzaTransparente1: rgba(128, 128, 128, 0.199);
   --cinzaTransparente2: rgba(128, 128, 128, 0.6);
+  --verde-correto: rgba(0, 255, 40, 0.8);
+  --vermelho-incorreto: rgba(255, 0, 0, 0.8);
 }
 
 *{
@@ -345,4 +347,17 @@ body::before {
   color: var(--branco1);
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(15, 91, 173, 0.5);
+}
+
+.game-container .question-card .option-button.correct {
+  background-color: var(--verde-correto);
+  color: var(--branco1);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 255, 40, 0.5);
+}
+
+.game-container .question-card .option-button.wrong {
+  background-color: var(--vermelho-incorreto);
+  color: var(--branco1);
+  transform: scale(0.95);
 }

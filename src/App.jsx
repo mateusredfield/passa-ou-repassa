@@ -138,7 +138,13 @@ const Game = ({ questions: allQuestions, onFinish }) => {
               key={option}
               onClick={() => handleOptionSelect(option)}
               className={`option-button ${selectedOption === option ? 'selected' : ''} ${
-                showResult ? (option === currentQuestion.answer ? 'correct' : 'wrong') : ''
+                showResult ? (
+                  option === currentQuestion.answer 
+                    ? 'correct' 
+                    : (selectedOption === option && selectedOption !== currentQuestion.answer)
+                      ? 'wrong' 
+                      : ''
+                ) : ''
               }`}
               disabled={showResult}
             >
