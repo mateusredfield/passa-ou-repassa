@@ -9,6 +9,7 @@
   --verde1: rgba(0, 255, 40, 0.4);
   --cinzaTransparente1: rgba(128, 128, 128, 0.199);
   --cinzaTransparente2: rgba(128, 128, 128, 0.6);
+  --cinzaTransparente3: rgba(68, 68, 68, 0.6);
   --verde-correto: rgba(0, 255, 40, 0.8);
   --vermelho-incorreto: rgba(255, 0, 0, 0.8);
 }
@@ -360,4 +361,94 @@ body::before {
   background-color: var(--vermelho-incorreto);
   color: var(--branco1);
   transform: scale(0.95);
+}
+
+.results-title{
+  color: var(--verde-correto);
+  font-size: clamp(1rem, 4vw, 10rem);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.results-title-placar{
+  padding-top: 1.5rem;
+  color: var(--branco1);
+  font-size: clamp(1rem, 4vw, 10rem);
+}
+
+.final-scores{
+  width: 35%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  font-size: clamp(1rem, 5vw, 10rem);
+  color: var(--branco1);
+  font-weight: 700;
+  border-bottom: 2px solid white;
+  background-color: var(--cinzaTransparente3);
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.final-scores .placar{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.winner-announcement {
+  width: 100%;
+  font-size: clamp(1rem, 5vw, 20rem);
+  color: var(--branco1);
+  margin-top: 1.5rem;
+  background-color: var(--cinzaTransparente3);
+}
+
+.winner-announcement-div{
+  width: 100%;
+  background-color: var(--cinzaTransparente3);
+}
+
+.winner-team{
+  width: 100%;
+  font-size: clamp(1rem, 9vw, 20rem);
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 5s ease infinite;
+  font-weight: 700;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.play-again-button{
+  width: 25vw;
+  height: clamp(1rem, 5vw, 10rem);
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 10rem);
+  color: var(--branco1);
+  background-color: var(--azulBotaoInicial);
+  border-radius: 5px;
+  margin-top: 1.5rem;
+  cursor: pointer;
 }

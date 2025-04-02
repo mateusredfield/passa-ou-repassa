@@ -194,18 +194,27 @@ const Results = ({ scores, onRestart }) => {
       <h1 className="results-title">Fim de Jogo!</h1>
       
       <div className="final-scores">
-        <div className="team-score">
-          <h2>Time 1</h2>
-          <p className="score">{scores.team1}</p>
-        </div>
-        <div className="team-score">
-          <h2>Time 2</h2>
-          <p className="score">{scores.team2}</p>
-        </div>
+        
+          <span className='placar'>
+            <span>Time 1: </span>
+            <span className="score"> {scores.team1}</span>
+          </span>
+        
+        
+          <span className='placar'>
+            <span>Time 2: </span>
+            <span className="score"> {scores.team2}</span>
+          </span>
+        
       </div>
       
       {winner !== 'Empate' ? (
-        <h2 className="winner-announcement">O vencedor é: {winner}!</h2>
+        <>
+          <div className="winner-announcement">Vencedor</div>
+          <div className='winner-announcement-div'>
+            <div className="winner-team">{winner?.toLocaleUpperCase()}!</div>
+          </div>
+        </>
       ) : (
         <h2 className="winner-announcement">O jogo terminou em empate!</h2>
       )}
