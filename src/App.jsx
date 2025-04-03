@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './App.css';
 import { mockQuestions } from './questions';
 import quizBackground from './assets/images/quiz-background.png';
+import InstallPWA from './components/InstallPWA';
 
 // Componente temporário para Home
 const Home = ({ onStartGame }) => (
@@ -292,6 +293,9 @@ function App() {
         {gameState === 'game' && <Game questions={mockQuestions} onFinish={finishGame} className="componentGame"/>}
         {gameState === 'results' && <Results scores={finalScores} onRestart={restartGame} />}
       </div>
+      
+      {/* Adicionando o componente InstallPWA */}
+      <InstallPWA />
     </>
   );
 }
