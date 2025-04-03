@@ -5,6 +5,7 @@ function InstallPWA() {
   const [debugMessage, setDebugMessage] = useState('Aguardando evento de instalação...');
   const [pwaStatus, setPwaStatus] = useState('Verificando...');
   const [showManualInstructions, setShowManualInstructions] = useState(false);
+  const [isInstalled, setIsInstalled] = useState(false);
   
   // Add this function to manually trigger the prompt
   const triggerPrompt = () => {
@@ -25,6 +26,15 @@ function InstallPWA() {
       setPwaStatus('Já instalado (standalone mode)');
       setDebugMessage('App já está instalado e rodando em modo standalone');
       console.log('App já está rodando em modo standalone');
+      setIsInstalled(true);
+      return;
+    }
+
+    // Also check if it's installed using other methods
+    if (window.navigator.standalone === true) {
+      setPwaStatus('Já instalado (iOS standalone)');
+      setDebugMessage('App já está instalado no iOS');
+      setIsInstalled(true);
       return;
     }
 
@@ -43,6 +53,7 @@ function InstallPWA() {
       console.log('App instalado com sucesso!');
       setDebugMessage('App instalado com sucesso!');
       setPwaStatus('Instalado');
+      setIsInstalled(true);
     });
     
     console.log('InstallPWA component mounted');
@@ -119,36 +130,77 @@ function InstallPWA() {
         maxWidth: '300px',
         marginTop: '10px'
       }}>
-        <h3 style={{ margin: '0 0 10px 0', fontSize: '16px' }}>Como instalar manualmente:</h3>
-        
-        {isMobile && isChrome && (
-          <div>
-            <p>No Chrome para Android:</p>
-            <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
-              <li>Toque no menu (três pontos)</li>
-              <li>Selecione "Instalar aplicativo"</li>
-            </ol>
-          </div>
-        )}
-        
-        {!isMobile && (isChrome || isEdge) && (
-          <div>
-            <p>No Chrome/Edge para Desktop:</p>
-            <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
-              <li>Clique no ícone de instalação na barra de endereço ⊕</li>
-              <li>Ou vá ao menu (três pontos) → "Instalar Passa ou Repassa..."</li>
-            </ol>
-          </div>
-        )}
-        
-        {isSafari && (
-          <div>
-            <p>No Safari para iOS:</p>
-            <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
-              <li>Toque no botão compartilhar</li>
-              <li>Role para baixo e toque em "Adicionar à Tela de Início"</li>
-            </ol>
-          </div>
+        {isInstalled ? (
+          <>
+            <h3 style={{ margin: '0 0 10px 0', fontSize: '16px' }}>Como desinstalar:</h3>
+            
+            {isMobile && isChrome && (
+              <div>
+                <p>No Android:</p>
+                <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
+                  <li>Vá para Configurações do dispositivo</li>
+                  <li>Aplicativos - Passa ou Repassa</li>
+                  <li>Toque em "Desinstalar"</li>
+                </ol>
+              </div>
+            )}
+            
+            {!isMobile && (isChrome || isEdge) && (
+              <div>
+                <p>No Chrome/Edge para Desktop:</p>
+                <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
+                  <li>Clique no menu (três pontos)</li>
+                  <li>Aplicativos - Gerenciar aplicativos</li>
+                  <li>Encontre "Passa ou Repassa" e clique em "Remover"</li>
+                </ol>
+              </div>
+            )}
+            
+            {isSafari && (
+              <div>
+                <p>No iOS:</p>
+                <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
+                  <li>Pressione e segure o ícone do app na tela inicial</li>
+                  <li>Toque em "Remover aplicativo"</li>
+                  <li>Confirme a remoção</li>
+                </ol>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <h3 style={{ margin: '0 0 10px 0', fontSize: '16px' }}>Como instalar manualmente:</h3>
+            
+            {isMobile && isChrome && (
+              <div>
+                <p>No Chrome para Android:</p>
+                <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
+                  <li>Toque no menu (três pontos)</li>
+                  <li>Selecione "Instalar aplicativo"</li>
+                </ol>
+              </div>
+            )}
+            
+            {!isMobile && (isChrome || isEdge) && (
+              <div>
+                <p>No Chrome/Edge para Desktop:</p>
+                <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
+                  <li>Clique no ícone de instalação na barra de endereço ⊕</li>
+                  <li>Ou vá ao menu (três pontos) → "Instalar Passa ou Repassa..."</li>
+                </ol>
+              </div>
+            )}
+            
+            {isSafari && (
+              <div>
+                <p>No Safari para iOS:</p>
+                <ol style={{ paddingLeft: '20px', margin: '5px 0' }}>
+                  <li>Toque no botão compartilhar</li>
+                  <li>Role para baixo e toque em "Adicionar à Tela de Início"</li>
+                </ol>
+              </div>
+            )}
+          </>
         )}
         
         <button 
@@ -170,37 +222,62 @@ function InstallPWA() {
   };
 
   // Sempre mostrar o botão para depuração
+  // Add this missing function
+  const showUninstallInstructions = () => {
+    setShowManualInstructions(true);
+    setDebugMessage('Para desinstalar, siga as instruções abaixo');
+  };
+
+  // Modify the return statement to ensure it only shows on the home page
   return (
     <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}>
-      <button
-        onClick={onClick}
-        style={{ 
-          padding: '10px 15px',
-          backgroundColor: promptInstall ? '#4CAF50' : '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontWeight: 'bold'
-        }}
-      >
-        Instalar App {promptInstall ? '✓' : ''}
-      </button>
-      
-      <div style={{ 
-        marginTop: '5px', 
-        backgroundColor: 'rgba(0,0,0,0.7)', 
-        color: 'white', 
-        padding: '5px', 
-        borderRadius: '3px',
-        fontSize: '12px',
-        maxWidth: '250px'
-      }}>
-        <div>Status: {pwaStatus}</div>
-        <div>{debugMessage}</div>
-      </div>
-      
-      {showManualInstructions && renderManualInstructions()}
+      {window.location.pathname === '/' && (
+        <>
+          {isInstalled ? (
+            <button
+              onClick={showUninstallInstructions}
+              style={{ 
+                padding: '10px',
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                cursor: 'pointer',
+                width: '50px',
+                height: '50px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              title="Gerenciar App"
+            >
+              <span style={{ fontSize: '20px' }}>⚙️</span>
+            </button>
+          ) : (
+            <button
+              onClick={onClick}
+              style={{ 
+                padding: '10px',
+                backgroundColor: promptInstall ? 'rgba(76,175,80,0.8)' : 'rgba(0,123,255,0.8)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                cursor: 'pointer',
+                width: '50px',
+                height: '50px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              title="Instalar App"
+            >
+              <span style={{ fontSize: '20px' }}>⬇️</span>
+            </button>
+          )}
+          
+          {showManualInstructions && renderManualInstructions()}
+        </>
+      )}
     </div>
   );
 }

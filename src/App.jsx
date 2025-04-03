@@ -295,7 +295,7 @@ function App() {
       </div>
       
       {/* Adicionando o componente InstallPWA */}
-      <InstallPWA />
+      {gameState === 'home' && <InstallPWA />}
     </>
   );
 }
